@@ -21,7 +21,7 @@ if [[ -e ".cld.log" ]]; then
 fi
 
 ## Script termination
-exit_on_signal_SIGINT() {
+
     { printf "\n\n%s\n\n" "${RED}[${WHITE}!${RED}]${RED} Program Interrupted." 2>&1; reset_color; }
     exit 0
 }
@@ -39,7 +39,7 @@ reset_color() {
 	tput sgr0   # reset attributes
 	tput op     # reset color
     return
-}
+
 
 ## Kill already running process
 kill_pid() {
@@ -115,7 +115,7 @@ dependencies() {
 					sudo pacman -S "$pkg" --noconfirm
 				elif [[ `command -v dnf` ]]; then
 					sudo dnf -y install "$pkg"
-				else
+
 					echo -e "\n${RED}[${WHITE}!${RED}]${RED} Unsupported package manager, Install packages manually."
 					{ reset_color; exit 1; }
 				fi
@@ -129,7 +129,7 @@ dependencies() {
 download_ngrok() {
 	url="$1"
 	file=`basename $url`
-	if [[ -e "$file" ]]; then
+]; then
 		rm -rf "$file"
 	fi
 	wget --no-check-certificate "$url" > /dev/null 2>&1
